@@ -10,3 +10,5 @@ let workDay = {
     "3 PM": "",
     "4 PM": "",
 };
+
+$('#currentDay h6').text(moment().format('dddd') + "," + moment().format('MMMM Do YYYY'));
