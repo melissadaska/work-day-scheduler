@@ -26,12 +26,21 @@ $('#currentDay').text(moment().format('dddd') + ", " + moment().format('MMMM Do 
 
 var counter = 1;
 for(const property in workDay) {
+    console.log("----- new day -----")
     var textInput = "#text-input" + counter;
+    console.log("textInput is " + textInput);
     $(textInput).text(workDay[property]);
+    console.log("property is " + property);
     var timeId = "#time" + counter;
+    console.log("timeId is " + timeId);
+    // set time here // TODO need to override for testing
     var presentHour = moment().hour();
+    console.log("present hour is " + presentHour); 
     var timeString = $(timeId).text();
-    var time = hourNumberFromHourString(timeString);  
+    var time = hourNumberFromHourString(timeString);
+    console.log("time is " + time);
+     
+    console.log("counter is " + counter);
     if(time < presentHour) {
         $(textInput).addClass("past");
     } else if (time > presentHour) {
