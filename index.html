@@ -25,14 +25,14 @@
   <body>
 
     <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <h1 class="display-3 row justify-content-center">Work Day Scheduler</h1>
+      <p class="lead row justify-content-center">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
 
     <div class="container">
 
-      <!-- Create 10 rows for 7am-4pm time blocks -->
+      <!-- Create 10 rows for 7am-4pm time blocks with each time block having 3 rows of textarea -->
       <div id="schedule-row1">
         <div id="time7" class="col-md-1">7 AM</div>
         <textarea rows="3" id="text-input7" class="col-md-10"></textarea>
@@ -97,6 +97,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/script.js"></script>
 
   </body>
 </html>
