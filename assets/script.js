@@ -11,6 +11,17 @@ let workDay = {
     "4 PM": "",
 };
 
+
+$(document).ready(function(){
+    // if nothing in local storage then call update scheduled tasks
+    if(!localStorage.getItem('workDay')) {
+      updateScheduledTasks(workDay);
+    } else {
+      // otherise update scheduled tasks
+      updateScheduledTasks(JSON.parse(localStorage.getItem('workDay')));
+    }
+})
+
 $('#currentDay').text(moment().format('dddd') + ", " + moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 var counter = 1;
@@ -31,12 +42,13 @@ for(const property in workDay) {
     counter ++;
 }
 
-// call saveSchedule when button is clicked
+// get value of textarea and hourString and call saveSchedule when button is clicked
 $("button").click(function() {
     value = $(this).siblings("textarea").val();
     hourString = $(this).siblings("div").text();
 
     // call saveSchedule
+    saveSchedule(hourString, value);
 });
 
 // switch statement to convert hour string into hour number
@@ -55,11 +67,41 @@ function hourNumberFromHourString(hourString) {
     }
 }
 
-// add function to initialize local storage
+function loadCorrectDataset() {
+    result = localStorage.getItem('workDay')
+    return (result ? result : workDay);
+}
 
-// add function to save localStorage
+// add function to initialize local storage
+function initializeLocalStorage() {
+    localStorage.setItem('workDay', JSON.stringify(workDay));
+};
+
+// add function save to localStorage
+function saveToLocalStorage(dayEl) {
+    localStorage.setItem('workDay', JSON.stringify(dayEl));
+}
 
 // add function to save schedule
-    // if no local storage is saved then
-        // call initialize local storage
+function saveSchedule(hourString, val) {
+    // if nothing in local storage then call initialize local storage
+    if(!localStorage.getItem('workDay')) {
+        initializeLocalStorage();
+    }
+
+    var workHours = JSON.parse(localStorage.getItem('workDay'));
+    workHours[hourString] = val
+
+    // call save to local storage
+    saveToLocalStorage(workHours);
+}
+
+// add function to update scheduled tasks
+function updateScheduledTasks(dayElement) {
+    $(".schedule-row").each(function(index) {
+        var res = $(this).children("div");
+        $(this).children("textarea").text(dayElement[res.text()]);
+    })
+}
+
 
