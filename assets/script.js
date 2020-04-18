@@ -55,3 +55,11 @@ function hourNumberFromHourString(hourString) {
     }
 }
 
+// add function to initialize local storage
+
+// add function to save localStorage
+
+// add function to save schedule
+    // if no local storage is saved then
+        // call initialize local storage
+
