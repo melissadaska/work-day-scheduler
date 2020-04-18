@@ -11,4 +11,24 @@ let workDay = {
     "4 PM": "",
 };
 
-$('#currentDay h6').text(moment().format('dddd') + "," + moment().format('MMMM Do YYYY'));
+$('#currentDay').text(moment().format('dddd') + ", " + moment().format('MMMM Do YYYY, h:mm:ss a'));
+
+var counter = 1;
+for(const property in workDay) {
+    var textInput = "#text-input" + counter;
+    $(textInput).text(workDay[property]);
+    var timeId = "#time" + counter;
+    var presentHour = moment().hour();
+    var timeString = $(timeId).text();
+    var time = hourNumberFromHourString(timeString);  
+    if(time < presentHour) {
+        $(textInput).addClass("past");
+    } else if (time > presentHour) {
+        $(textInput).addClass("future");
+    } else {
+        $(textInput).addClass("present");
+    }
+    counter ++;
+}
+
+
