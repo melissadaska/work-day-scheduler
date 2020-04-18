@@ -69,3 +69,12 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
+@media only screen and (min-width: 300px) and (max-width: 568px) {
+  .display-3 {
+    font-size: 3rem;
+  }
+  .row {
+    height: 120px;
+  }
+}
